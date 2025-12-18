@@ -583,7 +583,7 @@
                         <div class="icon">📍</div>
                         <div class="detail-content">
                             <h4>Venue</h4>
-                            <p>Shree Siddhi Vinayak Mandir<br>Prabhadevi, Mumbai 400028</p>
+                            <p>Kasbaah Garden and Restaurant<br>Kalyan, Mumbai 638228</p>
                         </div>
                     </div>
                     <div class="detail-item">
@@ -621,13 +621,13 @@
                         <div class="ritual-step">
                             <div class="step-number">1</div>
                             <div class="step-content">
-                                <strong>Baraat (10:00 AM)</strong> - The groom's procession arrives with music and dancing. Feel free to join!
+                                <strong>Baraat (10:00 AM)</strong> - The groom's procession arrives with music and dancing. You're free to join!
                             </div>
                         </div>
                         <div class="ritual-step">
                             <div class="step-number">2</div>
                             <div class="step-content">
-                                <strong>Varmala (10:45 AM)</strong> - Exchange of garlands. Bride and groom meet for the first time at the mandap.
+                                <strong>Varmala (10:45 AM)</strong> - Exchanging of garlands. Bride and groom meet for the first time at the mandap.
                             </div>
                         </div>
                         <div class="ritual-step">
@@ -650,7 +650,7 @@
                         </div>
                     </div>
                     <p style="margin-top: 15px; background: #fff9f0; padding: 15px; border-radius: 8px;">
-                        <strong>Important Guest Etiquette:</strong> Please silence phones, remove shoes before entering the mandap area, and remain seated during the Pheras. Light refreshments will be served at 12:00 PM.
+                        <strong>Important Guest Etiquette:</strong> Please silence your phones, remove your shoes before entering the mandap area, and remain seated during the Pheras. Light refreshments will be served at 12:00 PM.
                     </p>
                 </div>
             </div>
@@ -815,7 +815,6 @@
             </div>
         </div>
 
-        <!-- Footer -->
         <div class="footer">
             <h3>We Can't Wait to Celebrate With You!</h3>
             <p style="color: #666; margin: 20px 0;">For questions or special accommodations, please contact:</p>
@@ -857,28 +856,22 @@
                 section.classList.remove('active');
             });
             
-            // Remove active class from all buttons
             document.querySelectorAll('.tab-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
             
-            // Show selected section
             document.getElementById(eventName).classList.add('active');
             
-            // Add active class to clicked button
             event.target.classList.add('active');
             
-            // Smooth scroll to top of event section
             window.scrollTo({ top: 400, behavior: 'smooth' });
         }
 
         function handleRSVP(event) {
             event.preventDefault();
             alert('Thank you for your RSVP! You will receive a confirmation email shortly. 🎉');
-            // In production, this would submit to a backend
         }
 
-        // Add smooth scroll behavior
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
