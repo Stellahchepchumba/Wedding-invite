@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aanya & Kairav's Wedding</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #fef5e7 0%, #fdebd0 100%);
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.9), rgba(255,255,255,0.7)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50 10 L60 30 L80 30 L65 45 L70 65 L50 50 L30 65 L35 45 L20 30 L40 30 Z" fill="%23d4af37" opacity="0.1"/></svg>');
+            border-radius: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .couple-names {
+            font-size: 3.5em;
+            font-family: 'Palatino', serif;
+            color: #8b4513;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        .ampersand {
+            color: #d4af37;
+            font-style: italic;
+        }
+
+        .tagline {
+            font-size: 1.2em;
+            color: #666;
+            font-style: italic;
+            margin-top: 10px;
+        }
+
+        .date-highlight {
+            font-size: 1.3em;
+            margin-top: 20px;
+            color: #8b4513;
+            font-weight: bold;
+        }
+
+        /* Navigation Tabs */
+        .event-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .tab-btn {
+            padding: 15px 30px;
+            background: white;
+            border: 2px solid #d4af37;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s;
+            color: #8b4513;
+            font-weight: 600;
+        }
+
+        .tab-btn:hover {
+            background: #d4af37;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .tab-btn.active {
+            background: #8b4513;
+            color: white;
+            border-color: #8b4513;
+        }
+
+        /* Event Cards */
+        .event-section {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .event-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .event-card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-left: 5px solid #d4af37;
+        }
+
+        .event-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .event-title {
+            font-size: 2em;
+            color: #8b4513;
+            font-family: 'Palatino', serif;
+        }
+
+        .event-time {
+            background: #fef5e7;
+            padding: 10px 20px;
+            border-radius: 10px;
+            color: #8b4513;
+            font-weight: bold;
+        }
+
+        .event-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 25px 0;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: start;
+            gap: 15px;
+        }
+
+        .icon {
+            font-size: 1.5em;
+            color: #d4af37;
+            min-width: 30px;
+        }
+
+        .detail-content h4 {
+            color: #8b4513;
+            margin-bottom: 5px;
+            font-size: 1.1em;
+        }
+
+        .detail-content p {
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        /* Dress Code Section */
+        .dress-code {
+            background: #fff9f0;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 2px dashed #d4af37;
+        }
+
+        .dress-code h4 {
+            color: #8b4513;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .color-palette {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+
+        .color-swatch {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        /* Ritual Explainer */
+        .ritual-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .ritual-info h4 {
+            color: #8b4513;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .ritual-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .ritual-step {
+            display: flex;
+            gap: 15px;
+            align-items: start;
+        }
+
+        .step-number {
+            background: #d4af37;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-content strong {
+            color: #8b4513;
+        }
+
+        /* RSVP Section */
+        .rsvp-section {
+            background: linear-gradient(135deg, #8b4513 0%, #a0522d 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .rsvp-section h3 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .rsvp-form {
+            display: grid;
+            gap: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            font-size: 1.05em;
+        }
+
+        .form-group input,
+        .form-group select {
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            background: rgba(255,255,255,0.95);
+        }
+
+        .event-checkboxes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255,255,255,0.1);
+            padding: 12px;
+            border-radius: 8px;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .dietary-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .dietary-tag {
+            background: rgba(255,255,255,0.2);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .dietary-tag:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .submit-btn {
+            background: #d4af37;
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            background: #b8941f;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Additional Info Grid */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .info-box {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+            border-top: 4px solid #d4af37;
+        }
+
+        .info-box h4 {
+            color: #8b4513;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .info-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-box li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-box li:last-child {
+            border-bottom: none;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            background: white;
+            border-radius: 15px;
+            margin-top: 40px;
+        }
+
+        .footer h3 {
+            color: #8b4513;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .hashtag {
+            font-size: 1.5em;
+            color: #d4af37;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 768px) {
+            .couple-names {
+                font-size: 2.5em;
+            }
+            
+            .event-details {
+                grid-template-columns: 1fr;
+            }
+            
+            .event-header {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero">
+            <div class="couple-names">
+                Aanya <span class="ampersand">&</span> Kairav
+            </div>
+            <div class="tagline">Two hearts, three celebrations, one beautiful journey</div>
+            <div class="date-highlight">March 15-17, 2026 | Mumbai, India</div>
+        </div>
+
+        <!-- Event Navigation -->
+        <div class="event-tabs">
+            <button class="tab-btn active" onclick="showEvent('mehndi')">Mehndi Ceremony</button>
+            <button class="tab-btn" onclick="showEvent('sangeet')">Sangeet Night</button>
+            <button class="tab-btn" onclick="showEvent('wedding')">Wedding Ceremony</button>
+            <button class="tab-btn" onclick="showEvent('reception')">Reception</button>
+        </div>
+
+        <!-- Mehndi Event -->
+        <div class="event-section active" id="mehndi">
+            <div class="event-card">
+                <div class="event-header">
+                    <h2 class="event-title">🌿 Mehndi Ceremony</h2>
+                    <div class="event-time">📅 March 15, 2026 • 3:00 PM - 7:00 PM</div>
+                </div>
+
+                <div class="event-details">
+                    <div class="detail-item">
+                        <div class="icon">📍</div>
+                        <div class="detail-content">
+                            <h4>Venue</h4>
+                            <p>Bride's Family Garden<br>12 Mira Bhayandar, Mumbai 79887</p>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="icon">🚗</div>
+                        <div class="detail-content">
+                            <h4>Parking & Transport</h4>
+                            <p>Valet parking available<br>Uber code: AanyaKAIRAV15</p>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="icon">🍽️</div>
+                        <div class="detail-content">
+                            <h4>Menu</h4>
+                            <p>Light vegetarian snacks & beverages<br>Nut-free options available</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dress-code">
+                    <h4>👗 Dress Code: Bright & Vibrant</h4>
+                    <p>Traditional Indian attire encouraged - think colorful kurtas, lehengas, or sarees</p>
+                    <div class="color-palette">
+                        <div class="color-swatch" style="background: #FFD700;" title="Yellow"></div>
+                        <div class="color-swatch" style="background: #FF6B9D;" title="Pink"></div>
+                        <div class="color-swatch" style="background: #4ECDC4;" title="Turquoise"></div>
+                        <div class="color-swatch" style="background: #95E1D3;" title="Mint"></div>
+                        <div class="color-swatch" style="background: #FF6B35;" title="Orange"></div>
+                    </div>
+                    <p style="margin-top: 10px; font-size: 0.9em; color: #666;">Avoid: White or black</p>
+                </div>
+
+                <div class="ritual-info">
+                    <h4>🌺 What to Expect</h4>
+                    <p>The Mehndi ceremony is a very joyful pre-wedding celebration where knotty henna designs are applied to the bride's hands and feet. Guests enjoy music, dancing, and traditional snacks in a relaxed, festive atmosphere.</p>
+                    <p style="margin-top: 10px;"><strong>Guest Tip:</strong> Feel free to get mehndi applied by our artists! Bring comfortable seating as applications can take 30-60 minutes.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sangeet Event -->
+        <div class="event-section" id="sangeet">
+            <div class="event-card">
+                <div class="event-header">
+                    <h2 class="event-title">🎵 Sangeet Night</h2>
+                    <div class="event-time">📅 March 16, 2026 • 7:00 PM - 12:00 AM</div>
+                </div>
+
+                <div class="event-details">
+                    <div class="detail-item">
+                        <div class="icon">📍</div>
+                        <div class="detail-content">
+                            <h4>Venue</h4>
+                            <p>The Grand Ballroom<br>Sea Green Hotel, Apollo Bunder</p>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="icon">🚗</div>
+                        <div class="detail-content">
+                            <h4>Parking & Transport</h4>
+                            <p>Hotel valet service<br>Shuttle from Mira Bhayandar at 6:30 PM</p>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="icon">🍽️</div>
+                        <div class="detail-content">
+                            <h4>Menu</h4>
+                            <p>Dinner buffet (Veg & Non-veg)<br>Gluten-free & Jain options available</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dress-code">
+                    <h4>👔 Dress Code: Glamorous Evening Wear</h4>
+                    <p>Semi-formal to formal Indian or Western attire - this is a party!</p>
+                    <div class="color-palette">
+                        <div class="color-swatch" style="background: #8B008B;" title="Purple"></div>
+                        <div class="color-swatch" style="background: #DC143C;" title="Red"></div>
+                        <div class="color-swatch" style="background: #FFD700;" title="Gold"></div>
+                        <div class="color-swatch" style="background: #0047AB;" title="Royal Blue"></div>
+                        <div class="color-swatch" style="background: #50C878;" title="Emerald"></div>
+                    </div>
+                    <p style="margin-top: 10px; font-size: 0.9em; color: #666;">Avoid: White (reserved for bride's family performances)</p>
+                </div>
+
+                <div class="ritual-info">
+                    <h4>🎉 What to Expect</h4>
+                    <p>The Sangeet is an energetic musical evening where both families perform choreographed dances and songs. Expect Bollywood music, friendly competition, and plenty of dancing!</p>
+                    <p style="margin-top: 10px;"><strong>Guest Tip:</strong> Wear comfortable shoes for dancing. The dance floor opens at 9 PM after family performances.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Wedding Ceremony -->
+        <div class="event-section" id="wedding">
+            <div class="event-card">
+                <div class="event-header">
+                    <h2 class="event-title">💍 Wedding Ceremony</h2>
+                    <div class="event-time">📅 March 17, 2026 • 10:00 AM - 2:00 PM</div>
+                </div>
+
+                <div class="event-details">
+                    <div class="detail-item">
+                        <div class="icon">📍</div>
+                        <div class="detail-content">
+                            <h4>Venue</h4>
+                            <p>Shree Siddhi Vinayak Mandir<br>Prabhadevi, Mumbai 400028</p>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="icon">🚗</div>
+                        <div class="detail-content">
+                            <h4>Parking & Transport</h4>
+                            <p>Temple parking (limited)<br>Shuttles every 15 mins from hotel</p>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="icon">📹</div>
+                        <div class="detail-content">
+                            <h4>Livestream</h4>
+                            <p>Available for remote guests<br>Link: wedding.jckfrut.co/Aanyaa-kairav</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dress-code">
+                    <h4>👘 Dress Code: Traditional Formal</h4>
+                    <p>Traditional Indian attire required - Sarees, lehengas, sherwanis, or kurta pajamas</p>
+                    <div class="color-palette">
+                        <div class="color-swatch" style="background: #DC143C;" title="Red"></div>
+                        <div class="color-swatch" style="background: #FF1493;" title="Pink"></div>
+                        <div class="color-swatch" style="background: #FFD700;" title="Gold"></div>
+                        <div class="color-swatch" style="background: #8B4513;" title="Brown"></div>
+                        <div class="color-swatch" style="background: #FF8C00;" title="Orange"></div>
+                    </div>
+                    <p style="margin-top: 10px; font-size: 0.9em; color: #666;">Avoid: Black or white attire. Please dress modestly (covered shoulders recommended)</p>
+                </div>
+
+                <div class="ritual-info">
+                    <h4>🕉️ Understanding the Ceremony</h4>
+                    <div class="ritual-timeline">
+                        <div class="ritual-step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <strong>Baraat (10:00 AM)</strong> - The groom's procession arrives with music and dancing. Feel free to join!
+                            </div>
+                        </div>
+                        <div class="ritual-step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <strong>Varmala (10:45 AM)</strong> - Exchange of garlands. Bride and groom meet for the first time at the mandap.
+                            </div>
+                        </div>
+                        <div class="ritual-step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <strong>Kanyadaan (11:15 AM)</strong> - The bride's father gives her hand to the groom. This is an emotional moment - please remain seated.
+                            </div>
+                        </div>
+                        <div class="ritual-step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <strong>Saptapadi/Pheras (11:45 AM)</strong> - Seven sacred vows taken while circling the fire. Please stay seated during this 30-minute ritual.
+                            </div>
+                        </div>
+                        <div class="ritual-step">
+                            <div class="step-number">5</div>
+                            <div class="step-content">
+                                <strong>Sindoor & Mangalsutra (12:30 PM)</strong> - Final rituals marking them as married. Photos and blessings follow!
+                            </div>
+                        </div>
+                    </div>
+                    <p style="margin-top: 15px; background: #fff9f0; padding: 15px; border-radius: 8px;">
+                        <strong>Important Guest Etiquette:</strong> Please silence phones, remove shoes before entering the mandap area, and remain seated during the Pheras. Light refreshments will be served at 12:00 PM.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reception -->
+        <div class="event-section" id="reception">
+            <div class="event-card">
+                <div class="event-header">
+                    <h2 class="event-title">🥂 Wedding Reception</h2>
+                    <div class="event-time">📅 March 17, 2026 • 7:00 PM - 11:30 PM</div>
+                </div>
+
+                <div class="event-details">
+                    <div class="detail-item">
+                        <div class="icon">📍</div>
+                        <div class="detail-content">
+                            <h4>Venue</h4>
+                            <p>Soho House Mumbai<br>4th Floor, 58/A, Colaba</p>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="icon">🚗</div>
+                        <div class="detail-content">
+                            <h4>Parking & Transport</h4>
+                            <p>Valet parking included<br>Return shuttles until 12:30 AM</p>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="icon">🍽️</div>
+                        <div class="detail-content">
+                            <h4>Menu</h4>
+                            <p>Full course dinner (Veg/Non-veg/Vegan)<br>Premium bar | Allergen cards at buffet</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dress-code">
+                    <h4>🎩 Dress Code: Cocktail Attire</h4>
+                    <p>Indian fusion or Western cocktail attire - elegant and celebratory</p>
+                    <div class="color-palette">
+                        <div class="color-swatch" style="background: #000000;" title="Black"></div>
+                        <div class="color-swatch" style="background: #0047AB;" title="Navy"></div>
+                        <div class="color-swatch" style="background: #50C878;" title="Emerald"></div>
+                        <div class="color-swatch" style="background: #E0115F;" title="Ruby"></div>
+                        <div class="color-swatch" style="background: #FFD700;" title="Gold"></div>
+                    </div>
+                    <p style="margin-top: 10px; font-size: 0.9em; color: #666;">All colors welcome! This is the time to wear that stunning outfit.</p>
+                </div>
+
+                <div class="ritual-info">
+                    <h4>🎊 What to Expect</h4>
+                    <p>An elegant evening celebration with dinner, toasts, cake cutting, and dancing. This is a more relaxed, Western-style reception where you can mingle, enjoy fine dining, and celebrate with the newlyweds.</p>
+                    <p style="margin-top: 10px;"><strong>Guest Tip:</strong> First dance at 8:30 PM, cake cutting at 9:30 PM. The photo booth opens at 8:00 PM!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- RSVP Section -->
+        <div class="rsvp-section">
+            <h3>Please RSVP by February 15, 2026</h3>
+            <form class="rsvp-form" onsubmit="handleRSVP(event)">
+                <div class="form-group">
+                    <label>Full Name *</label>
+                    <input type="text" required placeholder="Enter your full name">
+                </div>
+                
+                <div class="form-group">
+                    <label>Email Address *</label>
+                    <input type="email" required placeholder="your.email@example.com">
+                </div>
+                
+                <div class="form-group">
+                    <label>Number of Guests</label>
+                    <select>
+                        <option>1 Guest</option>
+                        <option>2 Guests</option>
+                        <option>3 Guests</option>
+                        <option>4 Guests</option>
+                        <option>5+ Guests</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Which events will you attend? *</label>
+                    <div class="event-checkboxes">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="rsvp-mehndi" value="mehndi">
+                            <label for="rsvp-mehndi">Mehndi (March 15)</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="rsvp-sangeet" value="sangeet">
+                            <label for="rsvp-sangeet">Sangeet (March 16)</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="rsvp-wedding" value="wedding">
+                            <label for="rsvp-wedding">Wedding (March 17 AM)</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="rsvp-reception" value="reception">
+                            <label for="rsvp-reception">Reception (March 17 PM)</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Dietary Requirements</label>
+                    <input type="text" placeholder="E.g., Vegetarian, Vegan, Gluten-free, Nut allergy, Jain">
+                </div>
+
+                <div class="form-group">
+                    <label>Will you need livestream access?</label>
+                    <select>
+                        <option>No, I'll attend in person</option>
+                        <option>Yes, please send me the link</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit RSVP</button>
+            </form>
+        </div>
+
+        <!-- Additional Information Grid -->
+        <div class="info-grid">
+            <div class="info-box">
+                <h4>🏨 Accommodation</h4>
+                <ul>
+                    <li>🏩 <strong>Sea Green Hotel Mumbai</strong><br>Discounted rate: Code PAWEDDING</li>
+                    <li>🏩 <strong>Hotel Mantra Residency</strong><br>5 min from venues</li>
+                    <li>🏩 <strong>Hotel Elphinstone Annexe</strong><br>Budget-friendly option</li>
+                </ul>
+                <p style="margin-top: 10px; font-size: 0.9em; color: #666;">Book by Jan 31 for best rates</p>
+            </div>
+
+            <div class="info-box">
+                <h4>📸 Photo Sharing</h4>
+                <div class="hashtag">#AanyaKairavForever</div>
+                <p>Upload your photos to our shared gallery:</p>
+                <p style="margin-top: 10px;"><strong>🔗 photos.wedding.jckfrut.co/aanya-kairav</strong></p>
+                <p style="margin-top: 10px; font-size: 0.9em;">Or tag us on Instagram with our hashtag!</p>
+            </div>
+
+            <div class="info-box">
+                <h4>ℹ️ Travel Tips</h4>
+                <ul>
+                    <li>✈️ Nearest airport: Chhatrapati Shivaji (15km)</li>
+                    <li>🌡️ March weather: 23-32°C (73-90°F)</li>
+                    <li>💱 Currency: Indian Rupee (INR)</li>
+                    <li>🔌 Voltage: 230V (bring adapter)</li>
+                    <li>📱 Free WiFi at all venues</li>
+                </ul>
+            </div>
+
+            <div class="info-box">
+                <h4>🎁 Gift Registry</h4>
+                <p>Your presence is the greatest gift! If you wish to honor us with a gift:</p>
+                <ul style="margin-top: 10px;">
+                    <li>💝 Amazon Registry: bit.ly/AK-registry</li>
+                    <li>🏡 Honeymoon Fund: bit.ly/AK-honeymoon</li>
+                    <li>💌 Traditional: Cash envelopes accepted</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <h3>We Can't Wait to Celebrate With You!</h3>
+            <p style="color: #666; margin: 20px 0;">For questions or special accommodations, please contact:</p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <strong style="color: #8b4513;">Bride's Family</strong>
+                    <p>Chandan Sharma</p>
+                    <p>📞 +91 98858 40916</p>
+                    <p>✉️ sharma.family@email.com</p>
+                </div>
+                <div class="contact-item">
+                    <strong style="color: #8b4513;">Groom's Family</strong>
+                    <p>Faiz Ali</p>
+                    <p>📞 +91 9875 02271</p>
+                    <p>✉️ ali.family@email.com</p>
+                </div>
+                <div class="contact-item">
+                    <strong style="color: #8b4513;">Wedding Coordinator</strong>
+                    <p>Zameera Events</p>
+                    <p>📞 +91 9818 50262</p>
+                    <p>✉️ coordinator@zameeraevents.com</p>
+                </div>
+            </div>
+
+            <div style="margin-top: 30px; padding-top: 20px; border-top: 2px solid #f0f0f0;">
+                <p style="color: #999; font-size: 0.9em;">
+                    🌟 Website designed with love 🌟<br>
+                    © 2026 Aanya & Kairav's Wedding
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showEvent(eventName) {
+            // Hide all sections
+            document.querySelectorAll('.event-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Remove active class from all buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(eventName).classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+            
+            // Smooth scroll to top of event section
+            window.scrollTo({ top: 400, behavior: 'smooth' });
+        }
+
+        function handleRSVP(event) {
+            event.preventDefault();
+            alert('Thank you for your RSVP! You will receive a confirmation email shortly. 🎉');
+            // In production, this would submit to a backend
+        }
+
+        // Add smooth scroll behavior
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
